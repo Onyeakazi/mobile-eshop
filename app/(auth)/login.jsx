@@ -74,7 +74,7 @@ export default function Signup() {
                         Forgot your password?{" "}
                         <Text
                             style={{ textDecorationLine: "underline", color: "black" }}
-                            onPress={() => router.push("/reset-password")}
+                            onPress={() => router.push("/forgot-password")}
                         >
                             Reset your password
                         </Text>
@@ -120,7 +120,7 @@ export default function Signup() {
             </View>
 
                 
-            <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 190}}> 
+            <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: "auto"}}> 
                 <Text style={{ color: "#808080" }}>Don't have an account?</Text>
                 <Pressable onPress={() => router.push("./signup")}>
                 <Text style={{ textDecorationLine: "underline", marginLeft: 5 }}>Join</Text>

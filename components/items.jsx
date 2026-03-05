@@ -1,6 +1,7 @@
 import { View, Image, Pressable, Text } from "react-native";
 import Heart from "../assets/vectors/heart.svg";
 import RedHeart from "../assets/vectors/Heart-filled.svg";
+import { router } from "expo-router";
 
 export default function ProductCard({
     item,
@@ -9,7 +10,11 @@ export default function ProductCard({
     HeartIcon,
 }) {
     return (
-        <Pressable style={{marginTop: 15}}>
+        <Pressable style={{marginTop: 15}}
+            onPress={()=> {
+                router.push("/product")
+            }}
+        >
             <View style={{position: "relative"}}>
                 
                 <Image source={item.image}

@@ -83,7 +83,7 @@ export default function Index() {
             flexDirection: "row",
             alignItems: "center",
           }}
-          onPress={() => router.push("/(tabs)")}
+          onPress={() => router.push("/(auth)/login")}
         >
           <Text
             style={{

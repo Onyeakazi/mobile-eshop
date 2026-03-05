@@ -14,7 +14,7 @@ export default function TabsLayout() {
                 tabBarInactiveTintColor: "#9e9e9e",
 
                 tabBarStyle: {
-                    height: 90,
+                    height: 75,
                     paddingTop: 10,
                     paddingBottom: 15,
                 },
@@ -74,6 +74,7 @@ export default function TabsLayout() {
                     )
                 }}
             />
+
         </Tabs>
     )
 }

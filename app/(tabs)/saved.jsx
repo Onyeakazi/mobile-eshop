@@ -5,6 +5,7 @@ import Bell from "../../assets/vectors/bell.svg";
 import ProductCard from "../../components/items";
 import RedHeart from "../../assets/vectors/Heart-filled.svg";
 import HeartDuotone from "../../assets/vectors/Heart-duotone.svg";
+import Header from "../../components/header";
 
 const products = [
   {
@@ -41,24 +42,7 @@ export default function Saved() {
         <SafeAreaView style={{paddingHorizontal: 20}}>
         
            {/* header section */}
-            <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingVertical: 15}}>
-
-                <Pressable 
-                    onPress={() => {
-                        router.push("/")
-                    }}
-                >
-                    <ArrowBack width={24} height={24} />
-                </Pressable>
-
-                <View>
-                    <Text style={{fontSize: 25, fontWeight: 800}}>Saved Items</Text>
-                </View>
-                
-                <Pressable>
-                    <Bell width={24} height={24} />
-                </Pressable>
-            </View>
+            <Header backToHome={true} page={"Saved"} />
 
             {/* Products view */}
             {products.length > 0 ? (
@@ -68,14 +52,14 @@ export default function Saved() {
                     numColumns={2}
                     columnWrapperStyle={{ justifyContent: "space-between" }} 
                     contentContainerStyle={{
-                    paddingBottom: 180, 
+                        paddingBottom: 180, 
                     }}
                     renderItem={({item}) => (
-                    <ProductCard 
-                        item={item} 
-                        HeartIcon={RedHeart}
-                        imageHeight={120}
-                    />
+                        <ProductCard 
+                            item={item} 
+                            HeartIcon={RedHeart}
+                            imageHeight={120}
+                        />
                     )}
                     showsVerticalScrollIndicator={false}
                 />

@@ -146,7 +146,7 @@ export default function Signup() {
             </View>
 
                 
-            <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", top: 80}}>
+            <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: "auto"}}>
                 <Text style={{ color: "#808080" }}>Already have an account?</Text>
                 <Pressable onPress={() => router.push("./login")}>
                 <Text style={{ textDecorationLine: "underline", marginLeft: 5 }}>Log in</Text>

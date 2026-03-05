@@ -1,29 +1,48 @@
 import { Text, View, Pressable, TextInput, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Bell from "../../assets/vectors/bell.svg";
 import SearchIcon from "../../assets/vectors/search.svg";
 import Voice from "../../assets/vectors/voice.svg";
-import ArrowBack from "../../assets/vectors/arrow-back.svg";
-import RecentSearches from "../../components/recentSearches";
-import { router } from "expo-router";
+import SearchActive from "../../components/searchActive";
+import Header from "../../components/header";
 
 const products = [
+    // {
+    //     id: "1",
+    //     name: "jeans"
+    // },
+    // {
+    //     id: "2",
+    //     name: "Hoddie"
+    // },
+    // {
+    //     id: "3",
+    //     name: "Casual Clothes"
+    // },
+    // {
+    //     id: "4",
+    //     name: "Summer wears"
+    // }
+
     {
-        id: "1",
-        name: "jeans"
-    },
+    id: "1",
+    title: "Regular Fit Slogan",
+    price: "$1,390",
+    image: require("../../assets/images/clothe1.png"),
+  },
     {
         id: "2",
-        name: "Hoddie"
+        title: "Summer Shirt",
+        price: "$990",
+        discount: "-30%",
+        image: require("../../assets/images/clothe2.png"),
     },
     {
         id: "3",
-        name: "Casual Clothes"
+        title: "Regular Fit Black",
+        price: "$1,390",
+        discount: "-52%",
+        image: require("../../assets/images/clothe3.png"),
     },
-    {
-        id: "4",
-        name: "Summer wears"
-    }
 ]
 
 export default function Search() {
@@ -31,24 +50,7 @@ export default function Search() {
         <SafeAreaView style={{paddingHorizontal: 20}}>
         
             {/* header section */}
-            <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingVertical: 15}}>
-
-                <Pressable 
-                    onPress={() => {
-                        router.push("/")
-                    }}
-                >
-                    <ArrowBack width={24} height={24} />
-                </Pressable>
-
-                <View>
-                    <Text style={{fontSize: 25, fontWeight: 800}}>Search</Text>
-                </View>
-                
-                <Pressable>
-                    <Bell width={24} height={24} />
-                </Pressable>
-            </View>
+            <Header page={"Searches"} />
 
             {/* Search Section */}
             <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 15}}>
@@ -84,21 +86,47 @@ export default function Search() {
             </View>
 
             {/* Recent searches */}
-            <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 5}}>
+            {/* <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 5}}>
                 <Text style={{fontWeight: "700", fontSize: 20}}>Recent Searches</Text>
 
                 <Pressable>
                     <Text style={{textDecorationLine: "underline", fontWeight: "500"}}>Clear All</Text>
                 </Pressable>
-            </View>
+            </View> */}
 
-            <FlatList 
+            {/* <FlatList 
                 data={products}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({item}) => (
                     <RecentSearches item={item} />
                 )}
-            />
+            /> */}
+
+            {products.length > 0 ? (
+
+                <FlatList 
+                    data={products}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({item}) => (
+                        <SearchActive item={item} />
+                    )}
+                />
+            ) : (
+                <View style={{ justifyContent: "center", alignItems: "center", marginTop: 200 }}>
+                    <SearchIcon width={60} height={60} color="#9e9e9e"/>
+
+                    <Text style={{ fontSize: 20, fontWeight: 700, marginTop: 10 }}>
+                        No Results Found!
+                    </Text>
+
+                    <Text style={{fontSize: 16, color: "#808080", marginTop: 10 }}>
+                        Try a similar word or something 
+                    </Text>
+                    <Text style={{fontSize: 16, color: "#808080" }}>
+                        more general.
+                    </Text>
+                </View> 
+            )}
 
         </SafeAreaView>
     )

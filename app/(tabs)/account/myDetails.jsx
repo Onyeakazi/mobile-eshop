@@ -1,8 +1,8 @@
 import { FlatList, Image, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import ProductCart from "../../components/mycart";
-import CartIcon from "../../assets/vectors/cart.svg";
-import Header from "../../components/header";
+import ProductCart from "../../../components/mycart";
+import CartIcon from "../../../assets/vectors/cart.svg";
+import Header from "../../../components/header";
 import { router } from "expo-router";
 
 const products = [
@@ -10,7 +10,7 @@ const products = [
     id: "1",
     title: "Regular Fit Slogan",
     price: "$1,390",
-    image: require("../../assets/images/clothe1.png"),
+    image: require("../../../assets/images/clothe1.png"),
   },
   {
     id: "2",
@@ -28,12 +28,12 @@ const products = [
   },
 ];
 
-export default function Cart() {
+export default function MyDetails() {
     return (
         <SafeAreaView style={{paddingHorizontal: 20}}>
         
            {/* header section */}
-            <Header page={"My Cart"} />
+            <Header page={"My Details"} />
 
             {/* Items card */}
             {products.length > 0 ? (
