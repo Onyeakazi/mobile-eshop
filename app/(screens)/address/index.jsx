@@ -5,6 +5,7 @@ import { router } from "expo-router";
 import Location from "../../../assets/vectors/Location.svg";
 import Plus from "../../../assets/vectors/plus.svg";
 import { useState } from "react";
+import { StatusBar } from "expo-status-bar";
 
 export default function Address() {
     const [selected, setSelected] = useState("Home");
@@ -14,7 +15,7 @@ export default function Address() {
             <ScrollView>
                 <Pressable
                     onPress={() => setSelected(type)}
-                    style={{ borderWidth: 1, borderColor: "#e0e0e0", borderRadius: 10, padding: 20, marginBottom: 10}}>
+                    style={{ borderWidth: 1, borderColor: "#e0e0e0", borderRadius: 10, paddingHorizontal: 19, paddingVertical: 13, marginBottom: 10}}>
 
                         <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
 
@@ -55,7 +56,8 @@ export default function Address() {
     }
 
     return (
-        <SafeAreaView style={{flex: 1, paddingHorizontal: 20}}>
+        <SafeAreaView style={{flex: 1, paddingHorizontal: 20, backgroundColor: "white"}}>
+            <StatusBar style="dark" />
         
            {/* header section */}
             <Header page={"Address"} />
@@ -75,7 +77,7 @@ export default function Address() {
                 <AddressCard type="Other" address="321 Pine St, Houston, TX 77001" selected={selected} setSelected={setSelected}/>
 
                 
-                <Pressable style={{flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 10, paddingVertical: 18, paddingHorizontal: 20, borderWidth: 1, borderRadius: 10, borderColor: "#e0e0e0", marginVertical: 20}}
+                <Pressable style={{flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 10, paddingVertical: 14, paddingHorizontal: 20, borderWidth: 1, borderRadius: 10, borderColor: "#e0e0e0", marginVertical: 20}}
                     onPress={() => router.push("/address/addAddress")}
                 >
                     <Plus width={24} height={24} />

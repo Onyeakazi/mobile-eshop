@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     }
 })
 
-export default function OrderCard({item, onCompletedPress}) {
+export default function OrderCard({item, onCompletedPress, trackOrder}) {
     return (
         <View style={{marginTop: 15}}>
             <View style={{borderWidth: 1, borderColor: "#d4d4d4", padding: 12, borderRadius: 10, marginBottom: 1}}>
@@ -65,7 +65,7 @@ export default function OrderCard({item, onCompletedPress}) {
 
                             <View>
                                 <Pressable style={{borderWidth: 1, paddingHorizontal: 15, backgroundColor: "#000000", borderRadius: 9, paddingVertical: 8 }}
-                                    onPress={item.status === "Delivered" ? () => onCompletedPress(item) : () => console.log("Track Order")}
+                                    onPress={item.status === "Delivered" ? () => onCompletedPress(item) : () => trackOrder(item)}
                                 >
                                     <Text style={{color: "white", fontSize: 12}}>{item.status === "Delivered" ? "Leave Review" : "Track Order"}</Text>
                                 </Pressable>

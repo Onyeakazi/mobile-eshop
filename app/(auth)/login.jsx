@@ -11,7 +11,7 @@ export default function Signup() {
 
     return(
 
-        <View style={{flex:1, paddingHorizontal: 20, paddingVertical: 20}}>
+        <View style={{flex:1, paddingHorizontal: 20, paddingVertical: 20, backgroundColor: "white"}}>
             <Text style={{fontSize: 35, fontWeight: 700}}>Login to your account</Text>
             <Text style={{fontSize: 14, color: "#808080",}}>It's great to see you again</Text>
 

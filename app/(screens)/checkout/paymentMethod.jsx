@@ -8,11 +8,13 @@ import PaymentCard from "../../../components/paymentCard";
 import VisaCard from "../../../assets/vectors/bxl_visa.svg";
 import MasterCard from "../../../assets/vectors/mastercard.svg";
 import { useState } from "react";
+import { StatusBar } from "expo-status-bar";
 
 export default function PaymentMethod() {    
     const [selected, setSelected] = useState("**** **** **** 2512");
     return (
-        <SafeAreaView style={{flex: 1, paddingHorizontal: 20}}>
+        <SafeAreaView style={{flex: 1, paddingHorizontal: 20, backgroundColor: "white"}}>
+            <StatusBar style="dark" />
         
            {/* header section */}
             <Header page={"Payment Method"} />
@@ -38,7 +40,7 @@ export default function PaymentMethod() {
                 />
 
                 
-                <Pressable style={{flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 10, paddingVertical: 18, paddingHorizontal: 20, borderWidth: 1, borderRadius: 10, borderColor: "#e0e0e0", marginVertical: 20}}
+                <Pressable style={{flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 10, paddingVertical: 15, paddingHorizontal: 20, borderWidth: 1, borderRadius: 10, borderColor: "#e0e0e0", marginVertical: 20}}
                     onPress={() => router.push("/checkout/newCard")}
                 >
                     <Plus width={24} height={24} />

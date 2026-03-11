@@ -7,7 +7,7 @@ export default function Index() {
   const { width, height } = Dimensions.get("window");
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       
       {/* Background Lines */}
       <View

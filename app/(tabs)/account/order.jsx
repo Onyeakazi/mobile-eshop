@@ -7,6 +7,7 @@ import { router } from "expo-router";
 import { useState } from "react";
 import Cancel from "../../../assets/vectors/Cancel.svg";
 import FilledStar from "../../../assets/vectors/Star.svg";
+import { StatusBar } from "expo-status-bar";
 
 
 const products = [
@@ -99,11 +100,16 @@ export default function Order() {
         setModalVisible(true);
     };
 
+    const handleTracking = () => {
+        router.push("/trackOrder")
+    };
+
     const ongoingOrders = products.filter(p => p.status !== "Delivered");
     const completedOrders = products.filter(p => p.status === "Delivered");
 
     return (
-        <SafeAreaView style={{paddingHorizontal: 20}}>
+        <SafeAreaView style={{flex: 1, paddingHorizontal: 20, backgroundColor: "white"}}>
+            <StatusBar style="dark" />
         
            {/* header section */}
             <Header page={"My Orders"} />
@@ -130,7 +136,7 @@ export default function Order() {
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({item}) => (
                         <OrderCard item={item}
-                            onCompletedPress={handleCompletedPress} 
+                            trackOrder={handleTracking} 
                         />
                     )}
                     showsVerticalScrollIndicator={false}

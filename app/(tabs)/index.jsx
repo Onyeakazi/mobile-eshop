@@ -10,6 +10,7 @@ import ProductCard from "../../components/items";
 import { useState } from "react";
 import Slider from "@react-native-community/slider";
 import { Dropdown } from "react-native-element-dropdown";
+import { StatusBar } from "expo-status-bar";
 
 const products = [
   {
@@ -79,19 +80,21 @@ export default function Index() {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [value, setValue] = useState(50);
+  const [selected, setSelected] = useState("TShirt");
 
   return (
-    <SafeAreaView style={{paddingHorizontal: 20}}>
+    <SafeAreaView style={{paddingHorizontal: 20, backgroundColor: "white"}}>
+      <StatusBar style="dark" />
 
       {/* Discover section */}
       <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingVertical: 15}}>
         <View>
-            <Text style={{fontSize: 35, fontWeight: 800}}>Discover</Text>
+          <Text style={{fontSize: 35, fontWeight: 800}}>Discover</Text>
         </View>
         
         <Pressable 
             onPress={()=> {
-                router.push("/notifications")
+              router.push("/notifications")
             }}
         >
             <Bell width={25} height={25} />
@@ -151,8 +154,13 @@ export default function Index() {
           contentContainerStyle={{ paddingHorizontal: 2, paddingBottom: 13 }}
       >
           {["All", "TShirt", "Jeans", "Shoes", "Ladies"].map((item) => (
-              <Pressable key={item} style={styles.categoryButton}>
-                  <Text style={styles.categoryText}>{item}</Text>
+              <Pressable 
+                key={item} 
+                style={[styles.categoryButton, {backgroundColor: selected === item ? "#000" : "#fff"}]}
+                onPress={()=> setSelected(item
+                  )}
+              >
+                  <Text style={[styles.categoryText, {color: selected === item ? "#fff" : "#000"}]}>{item}</Text>
               </Pressable>
           ))}
       </ScrollView>
@@ -226,7 +234,8 @@ export default function Index() {
               contentContainerStyle={{ paddingHorizontal: 2, paddingBottom: 13 }}
             >
               {["Relevance", "Price: Low - High", "Price: High - Low"].map((item) => (
-                <Pressable key={item} style={styles.categoryButton}>
+                <Pressable 
+                  key={item} style={styles.categoryButton}>
                   <Text style={styles.categoryText}>{item}</Text>
                 </Pressable>
               ))}
@@ -306,7 +315,7 @@ export default function Index() {
 
             <Pressable style={styles.filterButton}>
               <Text style={{ color: "white" }}>
-                Apply Filter
+                Apply Filters
               </Text>
             </Pressable>
 

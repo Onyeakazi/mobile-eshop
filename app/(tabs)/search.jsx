@@ -3,7 +3,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import SearchIcon from "../../assets/vectors/search.svg";
 import Voice from "../../assets/vectors/voice.svg";
 import SearchActive from "../../components/searchActive";
+import RecentSearch from "../../components/recentSearches";
 import Header from "../../components/header";
+import { StatusBar } from "expo-status-bar";
 
 const products = [
     // {
@@ -47,7 +49,8 @@ const products = [
 
 export default function Search() {
     return (
-        <SafeAreaView style={{paddingHorizontal: 20}}>
+        <SafeAreaView style={{ flex: 1, paddingHorizontal: 20, backgroundColor: "white"}}>
+            <StatusBar style="dark" />
         
             {/* header section */}
             <Header page={"Searches"} />
@@ -92,13 +95,13 @@ export default function Search() {
                 <Pressable>
                     <Text style={{textDecorationLine: "underline", fontWeight: "500"}}>Clear All</Text>
                 </Pressable>
-            </View> */}
+            </View>
 
-            {/* <FlatList 
+            <FlatList 
                 data={products}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({item}) => (
-                    <RecentSearches item={item} />
+                    <RecentSearch item={item} />
                 )}
             /> */}
 
@@ -113,7 +116,7 @@ export default function Search() {
                 />
             ) : (
                 <View style={{ justifyContent: "center", alignItems: "center", marginTop: 200 }}>
-                    <SearchIcon width={60} height={60} color="#9e9e9e"/>
+                    <SearchIcon width={60} height={60} color="#B3B3B3"/>
 
                     <Text style={{ fontSize: 20, fontWeight: 700, marginTop: 10 }}>
                         No Results Found!

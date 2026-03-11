@@ -7,10 +7,12 @@ import Star from "../../../assets/vectors/Star.svg";
 import product1 from "../../../assets/images/clothe1.png"
 import Button from "../../../components/button";
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 export default function Product(){
     return (
-        <SafeAreaView style={{paddingHorizontal: 20}}>
+        <SafeAreaView style={{flex: 1, paddingHorizontal: 20, backgroundColor: "white"}}>
+            <StatusBar style="dark" />
             
             {/* header section */}
             <Header backToHome={true} page={"Details"} />
@@ -49,7 +51,7 @@ export default function Product(){
             <View style={{marginTop: 10}}>
                 <View style={{marginBottom: 15}}>
                     <Text style={{fontSize: 24, fontWeight: "700"}}>Regular Fit Slogan</Text>
-                    <Pressable style={{flexDirection: "row", marginVertical: 10, alignItems: "center"}}
+                    <Pressable style={{flexDirection: "row", marginVertical: 20, alignItems: "center"}}
                         onPress={()=> {
                             router.push("/reviews")
                         }}
@@ -58,7 +60,7 @@ export default function Product(){
                         <Text style={{fontSize: 16, fontWeight: "600", marginLeft: 5, textDecorationLine: "underline"}}>4.0/5</Text>
                         <Text style={{fontSize: 16, color: "#808080"}}>(45 reviews)</Text>
                     </Pressable>
-                    <Text style={{fontSize: 16, color: "#808080", lineHeight: 25}}>
+                    <Text style={{fontSize: 16, color: "#808080", lineHeight: 28}}>
                         The name says it all, the right size slightly snugs the body leaving enough room for comfort in the sleeves and waist.
                     </Text>
                 </View>

@@ -7,8 +7,13 @@ export default function CustomAlert({
     title = "Alert",   
     Icon,     
     message = "",           
-    onClose = () => {},     
+    onClose = () => {},  
+    onClick = () => {},     
     confirmText = "OK", 
+    cancelText = "Cancel", 
+    confirmStyle, 
+    cancelStyle,   
+    showCancel = true,
 }) {
     return(
         <Modal
@@ -17,21 +22,23 @@ export default function CustomAlert({
             animationType="fade"
         >
 
-            <View
+            <Pressable
                 style={{
                     flex: 1,
                     backgroundColor: "rgb(0,0,0, 0.5)",
                     justifyContent: "center",
                     alignItems: "center"
                 }}
+                onPress={onClose}
             >
-                <View
+                <Pressable
                     style={{
                         width: width * 0.8,
                         backgroundColor: "white",
                         borderRadius: 12,
                         padding: 20
                     }}
+                    onPress={(e) => e.stopPropagation()}
                 >
                     {Icon && 
                         <View style={{ marginRight: 8, alignSelf: "center" }}>
@@ -46,21 +53,38 @@ export default function CustomAlert({
                     </Text>
 
                     <Pressable
-                        onPress={onClose}
-                        style={{
-                        backgroundColor: "#1A1A1A",
-                        paddingVertical: 12,
-                        borderRadius: 8,
-                        alignItems: "center",
-                        }}
+                        onPress={onClick}
+                        style={[{
+                            backgroundColor: "#1A1A1A",
+                            paddingVertical: 12,
+                            borderRadius: 8,
+                            alignItems: "center",
+                            marginBottom: 10
+                        }, confirmStyle]}
                     >
                         <Text style={{ color: "white", fontWeight: "700", fontSize: 16 }}>
                         {confirmText}
                         </Text>
                     </Pressable>
 
-                </View>
-            </View>
+                    {showCancel && (
+                        <Pressable
+                            onPress={onClose}
+                            style={[{
+                                backgroundColor: "#1A1A1A",
+                                paddingVertical: 12,
+                                borderRadius: 8,
+                                alignItems: "center",
+                            }, cancelStyle]}
+                        >
+                            <Text style={{ color: "black", fontWeight: "700", fontSize: 16, }}>
+                            {cancelText}
+                            </Text>
+                        </Pressable>
+                    )}
+
+                </Pressable>
+            </Pressable>
           
        </Modal>
     )

@@ -22,7 +22,7 @@ export default function ProductCard({
                         width: 180,
                         height: imageHeight,
                         resizeMode: "contain",
-                        backgroundColor: "#e1e1e1",
+                        backgroundColor: "#E6E6E6",
                         borderRadius: 10,
                     }}
                 />

@@ -6,6 +6,7 @@ import ProductCard from "../../components/items";
 import RedHeart from "../../assets/vectors/Heart-filled.svg";
 import HeartDuotone from "../../assets/vectors/Heart-duotone.svg";
 import Header from "../../components/header";
+import { StatusBar } from "expo-status-bar";
 
 const products = [
   {
@@ -39,10 +40,11 @@ const products = [
 
 export default function Saved() {
     return (
-        <SafeAreaView style={{paddingHorizontal: 20}}>
+        <SafeAreaView style={{flex: 1, paddingHorizontal: 20, backgroundColor: "white"}}>
+            <StatusBar style="dark" />
         
            {/* header section */}
-            <Header backToHome={true} page={"Saved"} />
+            <Header backToHome={true} page={"Saved Items"} />
 
             {/* Products view */}
             {products.length > 0 ? (
@@ -71,7 +73,7 @@ export default function Saved() {
                         No Saved Items!
                     </Text>
 
-                    <Text style={{ color: "#666", marginTop: 5 }}>
+                    <Text style={{ color: "#666", marginTop: 10 }}>
                         You don't have any saved items.
                     </Text>
 

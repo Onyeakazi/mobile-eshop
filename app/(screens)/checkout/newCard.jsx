@@ -5,12 +5,14 @@ import Question from "../../../assets/vectors/Question.svg";
 import { useState } from "react";
 import CustomAlert from "../../../components/CustomAlert";
 import CheckDuotone from "../../../assets/vectors/Check-duotone.svg";
+import { StatusBar } from "expo-status-bar";
 
 export default function NewCard() {    
     const [alertVisible, setAlertVisible] = useState(false);
 
     return (
-        <SafeAreaView style={{flex: 1, paddingHorizontal: 20}}>
+        <SafeAreaView style={{flex: 1, paddingHorizontal: 20, backgroundColor: "white"}}>
+            <StatusBar style="dark" />
         
            {/* header section */}
             <Header page={"New Card"} />
@@ -119,7 +121,8 @@ export default function NewCard() {
                 title="Congratulations!"
                 message="Your new card has being added."
                 confirmText="Thanks"
-                onClose={() => setAlertVisible(false)}
+                showCancel={false}
+                onClick={() => setAlertVisible(false)}
             />
 
         </SafeAreaView>

@@ -91,8 +91,9 @@ export default function ForgotPassword() {
                 visible={alertVisible}
                 title="Success!"
                 message="You can now use your new password to login into your account."
-                confirmText="Close"
-                onClose={() => setAlertVisible(false)}
+                confirmText="Login"
+                showCancel={false}
+                onClose={() => router.push("/(auth)/login")}
             />
         </ScrollView>
       </KeyboardAvoidingView>

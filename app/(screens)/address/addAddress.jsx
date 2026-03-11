@@ -9,6 +9,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import CustomAlert from "../../../components/CustomAlert";
 import CheckDuotone from "../../../assets/vectors/Check-duotone.svg";
 import MapView, { Marker } from 'react-native-maps';
+import { StatusBar } from "expo-status-bar";
 
 export default function addAddress() {
     const [value, setValue] = useState(50);
@@ -21,13 +22,14 @@ export default function addAddress() {
     ];
   
     return (
-        <SafeAreaView style={{flex: 1, paddingHorizontal: 20}}>
+        <SafeAreaView style={{flex: 1, paddingHorizontal: 20, backgroundColor: "white"}}>
+            <StatusBar style="dark" />
         
            {/* header section */}
             <Header page={"New Address"} />
 
             {/* Map Section */}
-            <View style={{ width: "100%", height: 200, borderRadius: 10, overflow: "hidden", marginBottom: 20 }}>
+            <View style={{ width: "100%", height: 350, borderRadius: 10, overflow: "hidden", marginBottom: 20 }}>
                 <MapView
                     style={{ flex: 1 }}
                     initialRegion={{
@@ -161,7 +163,8 @@ export default function addAddress() {
                 title="Congratulations!"
                 message="Your new address has been added."
                 confirmText="Thanks"
-                onClose={() => setAlertVisible(false)}
+                showCancel={false}
+                onClick={() => setAlertVisible(false)}
             />
 
         </SafeAreaView>

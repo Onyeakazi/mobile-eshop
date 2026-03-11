@@ -5,6 +5,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import { useState } from "react";
 import FilledStar from "../../../assets/vectors/Star.svg";
 import WhiteStar from "../../../assets/vectors/White-Star.svg";
+import { StatusBar } from "expo-status-bar";
 
 
 export default function Notifications() {
@@ -73,7 +74,8 @@ export default function Notifications() {
   );
 
   return (
-    <SafeAreaView style={{paddingHorizontal: 20}}>
+    <SafeAreaView style={{paddingHorizontal: 20, backgroundColor: "white"}}>
+      <StatusBar style="dark" />
   
       {/* header section */}
       <Header backToHome={true} page={"Reviews"} />
@@ -230,6 +232,8 @@ const styles = StyleSheet.create({
 
   stars: {
     flexDirection: "row",
+    gap: 15,
+    marginBottom: 5
   },
 
   ratingCount: {
@@ -251,6 +255,7 @@ const styles = StyleSheet.create({
 
   starRow: {
     flexDirection: "row",
+    gap: 7
   },
 
   barBackground: {
@@ -295,7 +300,7 @@ const styles = StyleSheet.create({
   },
 
   reviewStars: {
-    fontSize: 16
+    fontSize: 16,
   },
 
   name: {

@@ -12,12 +12,14 @@ import Discount from "../../../assets/vectors/Discount.svg";
 import CustomAlert from "../../../components/CustomAlert";
 import CheckDuotone from "../../../assets/vectors/Check-duotone.svg";
 import { useState } from "react";
+import { StatusBar } from "expo-status-bar";
 
 export default function Checkout() {
     const [alertVisible, setAlertVisible] = useState(false);
 
     return (
-        <SafeAreaView style={{flex: 1, paddingHorizontal: 20}}>
+        <SafeAreaView style={{flex: 1, paddingHorizontal: 20, backgroundColor: "white"}}>
+            <StatusBar style="dark" />
         
            {/* header section */}
             <Header page={"Checkout"} />
@@ -153,7 +155,9 @@ export default function Checkout() {
                 title="Congratulations!"
                 message="Your order has been placed."
                 confirmText="Track Your Order"
+                showCancel={false}
                 onClose={() => setAlertVisible(false)}
+                onClick={() => router.replace("/trackOrder")}
             />
 
         </SafeAreaView>
@@ -178,7 +182,7 @@ const styles = StyleSheet.create({
     },
 
     cardColor2: {
-        backgroundColor: "#E6E6E6"
+        backgroundColor: "white"
     },
 
     cardText: {
