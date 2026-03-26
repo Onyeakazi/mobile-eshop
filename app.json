@@ -2,19 +2,23 @@
   "expo": {
     "name": "eshop",
     "slug": "eshop",
+    "owner": "godswill147",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/eshop-logo.jpeg",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
+      "bundleIdentifier": "com.chiemena.eshop",
       "supportsTablet": true
     },
     "splash": {
       "backgroundColor": "#1A1A1A"
     },
     "android": {
+      "package": "com.chiemena.eshop",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -47,6 +51,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "aec012e0-c17b-4b8f-8a64-922963c814a4"
+      }
     }
   }
 }

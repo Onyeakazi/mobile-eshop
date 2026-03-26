@@ -154,7 +154,7 @@ export default function Notifications() {
       </View>
 
       {/* Reviews List */}
-      <ScrollView style={{marginBottom: "100%"}}
+      <ScrollView style={{marginBottom: "80%"}}
         showsVerticalScrollIndicator={false}
       >
         <ReviewItem

@@ -10,14 +10,14 @@ export default function ProductCard({
     HeartIcon,
 }) {
     return (
-        <Pressable style={{marginTop: 15}}
+        <Pressable
             onPress={()=> {
                 router.push("/product")
             }}
         >
             <View style={{position: "relative"}}>
                 
-                <Image source={item.image}
+                <Image source={{uri: item.image}}
                     style={{
                         width: 180,
                         height: imageHeight,
@@ -51,10 +51,10 @@ export default function ProductCard({
                 )}
             </View>
 
-            <Text style={{fontWeight: "700", fontSize: 18, marginTop: 6}}>{item.title}</Text>
+            <Text style={{fontWeight: "700", fontSize: 18, marginTop: 6}}>{item.name}</Text>
 
             <View style={{flexDirection: "row", gap: 5, alignItems: "center"}}>
-                <Text style={{fontSize: 12}}>{item.price}</Text> 
+                <Text style={{fontSize: 15}}>₦{Number(item.price).toLocaleString()}</Text> 
 
                 {item.discount && (
                     <Text style={{ color: "red", fontSize: 13 }}>

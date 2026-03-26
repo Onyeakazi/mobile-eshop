@@ -2,6 +2,7 @@ import { View, Text, Dimensions, Image, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Lines2 from "../../assets/vectors/lines2.svg";
 import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Index() {
   const { width, height } = Dimensions.get("window");
@@ -83,7 +84,11 @@ export default function Index() {
             flexDirection: "row",
             alignItems: "center",
           }}
-          onPress={() => router.push("/(auth)/login")}
+          
+          onPress={async () => {
+            await AsyncStorage.setItem("hasOnboarded", "true");
+            router.replace("/(auth)/login");
+          }}
         >
           <Text
             style={{

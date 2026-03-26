@@ -7,68 +7,10 @@ import Voice from "../../assets/vectors/voice.svg"
 import Filter from "../../assets/vectors/filter.svg";
 import Cancel from "../../assets/vectors/Cancel.svg";
 import ProductCard from "../../components/items";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Slider from "@react-native-community/slider";
 import { Dropdown } from "react-native-element-dropdown";
 import { StatusBar } from "expo-status-bar";
-
-const products = [
-  {
-    id: "1",
-    title: "Regular Fit Slogan",
-    price: "$1,390",
-    image: require("../../assets/images/clothe1.png"),
-  },
-  {
-    id: "2",
-    title: "Summer Shirt",
-    price: "$990",
-    discount: "-30%",
-    image: require("../../assets/images/clothe2.png"),
-  },
-  {
-    id: "3",
-    title: "Regular Fit Black",
-    price: "$1,390",
-    discount: "-52%",
-    image: require("../../assets/images/clothe3.png"),
-  },
-  {
-    id: "4",
-    title: "Regular Fit V-Neck",
-    price: "$990",
-    discount: "-30%",
-    image: require("../../assets/images/clothe4.png"),
-  },
-  {
-    id: "5",
-    title: "Classic Polo",
-    price: "$1,390",
-    discount: "-52%",
-    image: require("../../assets/images/clothe5.png"),
-  },
-  {
-    id: "6",
-    title: "Long Sleeve",
-    price: "$990",
-    discount: "-30%",
-    image: require("../../assets/images/clothe6.png"),
-  },
-  {
-    id: "7",
-    title: "Regular Fit",
-    price: "$1,390",
-    discount: "-52%",
-    image: require("../../assets/images/clothe1.png"),
-  },
-  {
-    id: "2",
-    title: "Summer Fit",
-    price: "$990",
-    discount: "-30%",
-    image: require("../../assets/images/clothe3.png"),
-  },
-];
 
 const data = [
   { label: "L", value: "large" },
@@ -81,9 +23,25 @@ export default function Index() {
   const [modalVisible, setModalVisible] = useState(false);
   const [value, setValue] = useState(50);
   const [selected, setSelected] = useState("TShirt");
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+
+  const fetchProducts = async () => {
+    try{
+      const res = await fetch("http://10.171.75.250:5000/products");
+      const data = await res.json();
+      if(Array.isArray(data)) setProducts(data);
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
-    <SafeAreaView style={{paddingHorizontal: 20, backgroundColor: "white"}}>
+    <SafeAreaView style={{flex: 1, paddingHorizontal: 20, backgroundColor: "white"}}>
       <StatusBar style="dark" />
 
       {/* Discover section */}
@@ -151,7 +109,7 @@ export default function Index() {
       <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal: 2, paddingBottom: 13 }}
+          contentContainerStyle={{ paddingHorizontal: 2  }}
       >
           {["All", "TShirt", "Jeans", "Shoes", "Ladies"].map((item) => (
               <Pressable 
@@ -175,7 +133,7 @@ export default function Index() {
             paddingBottom: 210, 
         }}
         renderItem={({item}) => (
-            <ProductCard item={item} />
+            <ProductCard item={item} loading={loading} />
         )}
         showsVerticalScrollIndicator={false}
       />

@@ -15,11 +15,23 @@ import CustomAlert from "../../../components/CustomAlert";
 import Warning from "../../../assets/vectors/Warning.svg";
 import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-
+import { signOut } from "firebase/auth";
+import { auth } from "../../../config/firebase";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Account() {
     const { width, height } = Dimensions.get("window");
     const [alertVisible, setAlertVisible] = useState(false);
+
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            await AsyncStorage.removeItem("isLoggedIn");
+            router.replace("/login");
+        } catch (err) {
+            console.error("Logout error:", err);
+        }
+    };
     
     return (
         <SafeAreaView style={{flex: 1, paddingHorizontal: 20, backgroundColor: "white"}}>
@@ -187,7 +199,7 @@ export default function Account() {
                 confirmText="Yes, Logout"
                 cancelText="No, Cancel"
                 onClose={() => setAlertVisible(false)}
-                onClick={() => router.push("/(auth)/login")}
+                onClick={() => handleLogout()}
             />
         </SafeAreaView>
     )

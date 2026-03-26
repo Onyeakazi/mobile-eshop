@@ -22,8 +22,8 @@ export default function Product(){
                 <Image source={product1}
                     style={{
                         width: "100%",
-                        height: 368,
-                        resizeMode: "contain",
+                        height: 530,
+                        resizeMode: "cover",
                         backgroundColor: "#e1e1e1",
                         borderRadius: 10,
                     }}
@@ -79,6 +79,7 @@ export default function Product(){
                                     paddingHorizontal: 15,
                                     paddingVertical: 10
                                 }}
+                                key={item}
                             >
                                 <Text style={{fontSize: 20, color: "1A1A1A", fontWeight: "700"}} key={item}>{item}</Text>
                             </Pressable>
@@ -89,7 +90,7 @@ export default function Product(){
                 <View style={{marginHorizontal: -20, height: 2, backgroundColor: "#e6e6e6", marginVertical: 13}}></View>
             </View>
 
-            <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 40, marginTop: "auto"}}>
+            <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 40, marginTop: ""}}>
                 <View>
                     <Text style={{color: "#808080", fontSize: 16}}>Price</Text>
                     <Text style={{color: "#1A1A1A", fontSize: 24, fontWeight: "700"}}>$1,190</Text>

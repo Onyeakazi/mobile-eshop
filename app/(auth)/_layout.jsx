@@ -6,7 +6,7 @@ export default function AuthLayout() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
         <StatusBar style="dark" />
-      <Slot />
+        <Slot />
     </SafeAreaView>
   );
 }
