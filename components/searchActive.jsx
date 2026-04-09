@@ -8,7 +8,7 @@ export default function SearchActive({item}) {
 
                 <View style={{flexDirection: "row", gap: 20, alignItems: "center"}}>
                     <Image
-                        source={item.image}
+                        source={{uri: item.image}}
                         style={{
                             width: 56,
                             height: 53,
@@ -19,9 +19,9 @@ export default function SearchActive({item}) {
                     /> 
 
                     <View>
-                        <Text style={{fontSize: 16, fontWeight: "800", color: "#000", marginBottom: 5}}>{item.title}</Text>
+                        <Text style={{fontSize: 16, fontWeight: "800", color: "#000", marginBottom: 5}}>{item.name}</Text>
                         <View style={{flexDirection: "row", gap: 6}}>
-                            <Text style={{fontSize: 12, color: "#888", fontWeight: "500"}}>{item.price}</Text>
+                            <Text style={{fontSize: 12, color: "#888", fontWeight: "500"}}>₦{Number(item.price).toLocaleString()}</Text>
                             <Text style={{fontSize: 12, color: "#ED1010", fontWeight: "500"}}>{item.discount}</Text>
                         </View>
                     </View>

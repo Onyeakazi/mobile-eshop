@@ -37,7 +37,7 @@ export default function OrderCard({item, onCompletedPress, trackOrder}) {
                 <View style={{flexDirection: "row", gap: 15}}>
                     <View>
                         <Image 
-                            source={item.image} 
+                            source={{ uri: item.image }} 
                                 style={{
                                 width: 83,
                                 height: 79,
@@ -51,7 +51,7 @@ export default function OrderCard({item, onCompletedPress, trackOrder}) {
                     <View style={{ flex: 1 }}>
                         <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}> 
                             <View>
-                                <Text style={{fontWeight: "700", flex: 1}}>{item.title}</Text>
+                                <Text style={{fontWeight: "700", flex: 1}}>{item.name}</Text>
                                 <Text style={{fontSize: 13, fontWeight: 300}}>{item.size}</Text>
                             </View>
 
@@ -61,7 +61,7 @@ export default function OrderCard({item, onCompletedPress, trackOrder}) {
                         </View>
 
                         <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 20}}>
-                            <Text style={{fontWeight: "700"}}>{item.price}</Text>
+                            <Text style={{fontWeight: "700"}}>₦{Number(item.price).toLocaleString()}</Text>
 
                             <View>
                                 <Pressable style={{borderWidth: 1, paddingHorizontal: 15, backgroundColor: "#000000", borderRadius: 9, paddingVertical: 8 }}

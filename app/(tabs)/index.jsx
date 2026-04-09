@@ -21,20 +21,42 @@ const data = [
 export default function Index() {
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [value, setValue] = useState(50);
-  const [selected, setSelected] = useState("TShirt");
+  const [selected, setSelected] = useState("All");
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  // filter model states
+  const [sortBy, setSortBy] = useState("Relevance");
+  const [price, setPrice] = useState(100000)
+  const [size, setSize] = useState(null)
 
   const fetchProducts = async () => {
     try{
-      const res = await fetch("http://10.171.75.250:5000/products");
+      const res = await fetch(process.env.EXPO_PUBLIC_BACKEND_URL + `/products`);
       const data = await res.json();
       if(Array.isArray(data)) setProducts(data);
+      setLoading(false);
     }catch(err){
       console.log(err)
     }
   }
+
+  const filteredProducts = products.filter((item) => {
+    const marchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesCategory = selected === "All" || item.category === selected;
+
+    const matchesPrice = item.price <= price;
+
+    const matchesSize = !size || item.size === size;
+
+    return (marchesSearch && matchesCategory && matchesPrice && matchesSize);
+  })
+  .sort((a, b)=> {
+    if(sortBy === "Price: Low - High") return a.price - b.price;
+    if(sortBy === "Price: High - Low") return b.price - a.price;
+    return 0;
+  })
 
   useEffect(() => {
     fetchProducts();
@@ -77,6 +99,8 @@ export default function Index() {
 
               <TextInput
                   placeholder="Search for clothes..."
+                  value={searchQuery}
+                  onChangeText={setSearchQuery}
                   placeholderTextColor="#9e9e9e"
                   style={{
                   flex: 1,              
@@ -109,14 +133,13 @@ export default function Index() {
       <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal: 2  }}
+          contentContainerStyle={{ paddingHorizontal: 2, paddingBottom: 13 }}
       >
           {["All", "TShirt", "Jeans", "Shoes", "Ladies"].map((item) => (
               <Pressable 
                 key={item} 
                 style={[styles.categoryButton, {backgroundColor: selected === item ? "#000" : "#fff"}]}
-                onPress={()=> setSelected(item
-                  )}
+                onPress={()=> setSelected(item)}
               >
                   <Text style={[styles.categoryText, {color: selected === item ? "#fff" : "#000"}]}>{item}</Text>
               </Pressable>
@@ -125,13 +148,18 @@ export default function Index() {
 
       {/* Products view */}
       <FlatList 
-        data={products}
+        data={filteredProducts}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         columnWrapperStyle={{ justifyContent: "space-between" }} 
         contentContainerStyle={{
-            paddingBottom: 210, 
+            paddingBottom: 1, 
         }}
+        ListEmptyComponent={
+          <Text style={{ textAlign: "center", fontSize: 18, color: "#666" }}>
+            No products found
+          </Text>
+        }
         renderItem={({item}) => (
             <ProductCard item={item} loading={loading} />
         )}
@@ -193,8 +221,14 @@ export default function Index() {
             >
               {["Relevance", "Price: Low - High", "Price: High - Low"].map((item) => (
                 <Pressable 
-                  key={item} style={styles.categoryButton}>
-                  <Text style={styles.categoryText}>{item}</Text>
+                  key={item} 
+                  style={[
+                    styles.categoryButton,
+                    {backgroundColor: sortBy === item ? "#000" : "#fff"}
+                  ]}
+                  onPress={()=> setSortBy(item)}
+                >
+                  <Text style={{color: sortBy === item ? "#fff" : "#000"}}>{item}</Text>
                 </Pressable>
               ))}
             </ScrollView>
@@ -220,15 +254,15 @@ export default function Index() {
                   color: "#808080"
                 }}
               >
-                $0 - $200
+                ₦0 - ₦{price.toLocaleString()}
               </Text>
             </View>
 
             <Slider
               minimumValue={0}
-              maximumValue={100}
-              value={value}
-              onValueChange={setValue}
+              maximumValue={100000}
+              value={price}
+              onValueChange={setPrice}
               minimumTrackTintColor="black"  
               maximumTrackTintColor="#e6e6e6"
               thumbTintColor="black" 
@@ -251,7 +285,8 @@ export default function Index() {
               <View
                 style={{
                   marginBottom: 1,
-                  width: "13%"
+                  width: "13%",
+                  marginRight: 5,
                 }}
               >
                 <Dropdown
@@ -260,18 +295,28 @@ export default function Index() {
                     borderColor: "#ccc",
                     borderRadius: 8,
                     padding: 10,
+                    width: "100px",
                   }}
                   data={data}
                   labelField="label"
                   valueField="value"
                   placeholder="L"
-                  value={value}
-                  onChange={item => setValue(item.value)}
+                  value={size}
+                  onChange={item => setSize(item.value)}
+                  dropdownPosition="top"
                 />
               </View>
             </View>
 
-            <Pressable style={styles.filterButton}>
+            <Pressable 
+              style={styles.filterButton}
+              onPress={()=> {
+                setSortBy(sortBy)
+                setPrice(price)
+                setSize(size)
+                setModalVisible(false)
+              }}
+            >
               <Text style={{ color: "white" }}>
                 Apply Filters
               </Text>

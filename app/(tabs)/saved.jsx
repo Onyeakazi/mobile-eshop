@@ -7,38 +7,11 @@ import RedHeart from "../../assets/vectors/Heart-filled.svg";
 import HeartDuotone from "../../assets/vectors/Heart-duotone.svg";
 import Header from "../../components/header";
 import { StatusBar } from "expo-status-bar";
-
-const products = [
-  {
-    id: "1",
-    title: "Regular Fit Slogan",
-    price: "$1,390",
-    image: require("../../assets/images/clothe1.png"),
-  },
-  {
-    id: "2",
-    title: "Summer Shirt",
-    price: "$990",
-    discount: null,
-    image: require("../../assets/images/clothe2.png"),
-  },
-  {
-    id: "3",
-    title: "Regular Fit Black",
-    price: "$1,390",
-    discount: null,
-    image: require("../../assets/images/clothe3.png"),
-  },
-  {
-    id: "4",
-    title: "Regular Fit V-Neck",
-    price: "$990",
-    discount: null,
-    image: require("../../assets/images/clothe4.png"),
-  },
-];
+import { useFavoritesStore } from "../../store/favoritesStore";
 
 export default function Saved() {
+    const favorites = useFavoritesStore((state) => state.favorites);
+
     return (
         <SafeAreaView style={{flex: 1, paddingHorizontal: 20, backgroundColor: "white"}}>
             <StatusBar style="dark" />
@@ -47,9 +20,9 @@ export default function Saved() {
             <Header backToHome={true} page={"Saved Items"} />
 
             {/* Products view */}
-            {products.length > 0 ? (
+            {favorites.length > 0 ? (
                 <FlatList 
-                    data={products}
+                    data={favorites}
                     keyExtractor={(item) => item.id.toString()}
                     numColumns={2}
                     columnWrapperStyle={{ justifyContent: "space-between" }} 
