@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react
 import ProductsList from "./pages/ProductsList";
 import AddProduct from "./pages/AddProduct";
 import "./App.css";
+import Chat from "./pages/Chat";
 
 function Navbar() {
   const location = useLocation();
@@ -25,6 +26,9 @@ function Navbar() {
         <Link to="/add" className={linkStyle("/add")}>
           Add Product
         </Link>
+        <Link to="/chat" className={linkStyle("/chat")}>
+          Chat
+        </Link>
       </div>
     </nav>
   );
@@ -43,6 +47,7 @@ function AppLayout() {
             element={<AddProduct onAdded={() => (window.location = "/")} />}
           />
           <Route path="/edit/:id" element={<AddProduct />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </div>
     </div>
